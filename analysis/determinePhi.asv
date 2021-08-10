@@ -1,0 +1,11 @@
+clear variables
+files = dir('data/41047_2019.txt');
+rng(4567)
+data = readers.readNdbc( fullfile(files(1).folder, files(1).name) ) ;
+fs = 1/600;
+months = 1:12;
+figure;
+for mm = months
+    wdir = data.WDIR(data.MM == mm);
+    plot( (0:length(wdir)-1)/6, unwrap(wdir)*pi/180) ;
+    
